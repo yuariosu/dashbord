@@ -3,74 +3,261 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SPACE GRADIUS - 本格シューティング</title>
+    <title>アメリカ留学生ビザ・SNS審査ダッシュボード</title>
     <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
-    <div class="game-container">
-        <!-- スタート画面 -->
-        <div id="startScreen" class="start-screen">
-            <div class="title-section">
-                <h1 class="game-title">SPACE GRADIUS</h1>
-                <div class="subtitle">本格宇宙シューティング</div>
-            </div>
-            <div class="menu-section">
-                <button id="startBtn" class="menu-btn">ゲーム開始</button>
-                <div class="difficulty-select">
-                    <label>難易度選択:</label>
-                    <select id="difficultySelect">
-                        <option value="easy">イージー</option>
-                        <option value="normal" selected>ノーマル</option>
-                        <option value="hard">ハード</option>
-                        <option value="extreme">エクストリーム</option>
-                    </select>
+    <div class="container">
+        <!-- Header Section -->
+        <header class="header py-16">
+            <h1>アメリカ留学生ビザ・SNS審査ダッシュボード</h1>
+            <div class="header-meta flex items-center justify-between mt-8">
+                <p class="last-updated">最終更新日: 2025年5月30日</p>
+                <div class="status status--warning">
+                    トランプ政権による政策変更実施中
                 </div>
-                <div class="instructions">
-                    <h3>操作方法</h3>
-                    <p>移動: ↑↓←→キー</p>
-                    <p>射撃: スペースキー</p>
-                    <p>ポーズ: Pキー</p>
+            </div>
+        </header>
+
+        <!-- Important Alert -->
+        <div class="alert-section mb-8">
+            <div class="card alert-card">
+                <div class="card__body">
+                    <h3>⚠️ 重要なお知らせ</h3>
+                    <p>2025年5月下旬より、F・M・Jビザ申請者全員に対するSNS審査が強化され、新規面接予約が一時停止されています。申請前にSNSアカウントの内容を十分確認してください。</p>
                 </div>
             </div>
         </div>
 
-        <!-- ゲーム画面 -->
-        <div id="gameScreen" class="game-screen hidden">
-            <div class="game-header">
-                <div class="score">スコア: <span id="score">0</span></div>
-                <div class="lives">残機: <span id="lives">3</span></div>
-                <div class="level">ステージ: <span id="level">1</span></div>
-                <div class="weapon">武器: <span id="weapon">通常弾</span></div>
-            </div>
-            
-            <canvas id="gameCanvas" width="900" height="600"></canvas>
-            
-            <div class="game-status">
-                <div class="health-bar">
-                    <label>シールド:</label>
-                    <div class="health-container">
-                        <div id="healthBar" class="health-fill"></div>
+        <!-- Overview Statistics -->
+        <section class="overview-section py-16">
+            <h2 class="section-title">概要統計（2023-24年）</h2>
+            <div class="stats-grid">
+                <div class="stat-card card">
+                    <div class="card__body">
+                        <div class="stat-number">1,126,690人</div>
+                        <div class="stat-label">総留学生数</div>
+                    </div>
+                </div>
+                <div class="stat-card card">
+                    <div class="card__body">
+                        <div class="stat-number text-success">+6.6%</div>
+                        <div class="stat-label">前年比成長率</div>
+                    </div>
+                </div>
+                <div class="stat-card card">
+                    <div class="card__body">
+                        <div class="stat-number">5.9%</div>
+                        <div class="stat-label">全米大学生に占める割合</div>
+                    </div>
+                </div>
+                <div class="stat-card card">
+                    <div class="card__body">
+                        <div class="stat-number">71.5%</div>
+                        <div class="stat-label">アジア系留学生の割合</div>
                     </div>
                 </div>
             </div>
-        </div>
-        
-        <!-- ゲームオーバー画面 -->
-        <div id="gameOverScreen" class="game-over hidden">
-            <h2>GAME OVER</h2>
-            <p>最終スコア: <span id="finalScore">0</span></p>
-            <p>到達ステージ: <span id="finalLevel">1</span></p>
-            <div class="game-over-buttons">
-                <button id="restartBtn" class="menu-btn">リトライ</button>
-                <button id="mainMenuBtn" class="menu-btn">メインメニュー</button>
+        </section>
+
+        <!-- Country Rankings -->
+        <section class="countries-section py-16">
+            <h2 class="section-title">国別留学生ランキング</h2>
+            <div class="chart-container">
+                <div class="card">
+                    <div class="card__body">
+                        <canvas id="countriesChart"></canvas>
+                    </div>
+                </div>
             </div>
-        </div>
+        </section>
+
+        <!-- Visa Types -->
+        <section class="visa-types-section py-16">
+            <h2 class="section-title">ビザタイプ別情報</h2>
+            <div class="visa-grid">
+                <div class="visa-card card">
+                    <div class="card__body">
+                        <div class="visa-type">F-1ビザ</div>
+                        <h4>学生ビザ</h4>
+                        <div class="visa-details">
+                            <p><strong>対象:</strong> 大学・語学学校</p>
+                            <p><strong>要件:</strong> 週18時間以上</p>
+                            <p><strong>期間:</strong> 最長5年</p>
+                            <div class="status status--error mt-8">SNS審査対象</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="visa-card card">
+                    <div class="card__body">
+                        <div class="visa-type">M-1ビザ</div>
+                        <h4>職業訓練ビザ</h4>
+                        <div class="visa-details">
+                            <p><strong>対象:</strong> 専門学校</p>
+                            <p><strong>要件:</strong> 職業専門学校</p>
+                            <p><strong>期間:</strong> プログラム期間</p>
+                            <div class="status status--error mt-8">SNS審査対象</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="visa-card card">
+                    <div class="card__body">
+                        <div class="visa-type">J-1ビザ</div>
+                        <h4>交流訪問者ビザ</h4>
+                        <div class="visa-details">
+                            <p><strong>対象:</strong> 交換留学・研修</p>
+                            <p><strong>要件:</strong> 交換プログラム</p>
+                            <p><strong>期間:</strong> プログラム期間+30日</p>
+                            <div class="status status--error mt-8">SNS審査対象</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Policy Changes Timeline -->
+        <section class="timeline-section py-16">
+            <h2 class="section-title">トランプ政権の政策変更タイムライン</h2>
+            <div class="timeline-container">
+                <div class="timeline-item card">
+                    <div class="card__body">
+                        <div class="timeline-date">2025年5月下旬</div>
+                        <h4>SNS審査強化</h4>
+                        <p>F・M・Jビザ申請者全員のSNS審査義務化、新規面接予約一時停止</p>
+                        <div class="status status--error">実施中</div>
+                    </div>
+                </div>
+                <div class="timeline-item card">
+                    <div class="card__body">
+                        <div class="timeline-date">2025年5月22日</div>
+                        <h4>ハーバード大学認定取り消し</h4>
+                        <p>留学生受け入れ資格停止、260人の日本人学生・研究者に影響</p>
+                        <div class="status status--info">実施済み</div>
+                    </div>
+                </div>
+                <div class="timeline-item card">
+                    <div class="card__body">
+                        <div class="timeline-date">2025年5月28日</div>
+                        <h4>中国人留学生ビザ取り消し</h4>
+                        <p>中国共産党関係者のビザ取り消し、約27万7千人に潜在的影響</p>
+                        <div class="status status--error">開始</div>
+                    </div>
+                </div>
+                <div class="timeline-item card">
+                    <div class="card__body">
+                        <div class="timeline-date">2025年5月28日</div>
+                        <h4>留学生割合制限提案</h4>
+                        <p>大学の留学生割合を15%に制限すべきと主張、全米大学に影響</p>
+                        <div class="status status--warning">検討中</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SNS Review Criteria -->
+        <section class="sns-section py-16">
+            <h2 class="section-title">SNS審査基準</h2>
+            <div class="sns-content">
+                <div class="sns-overview card">
+                    <div class="card__body">
+                        <h3>審査概要</h3>
+                        <div class="sns-info">
+                            <p><strong>審査対象期間:</strong> 過去5年間</p>
+                            <p><strong>対象プラットフォーム:</strong></p>
+                            <div class="platforms-list">
+                                <span class="platform-tag">Facebook</span>
+                                <span class="platform-tag">Instagram</span>
+                                <span class="platform-tag">LinkedIn</span>
+                                <span class="platform-tag">Twitter</span>
+                                <span class="platform-tag">YouTube</span>
+                                <span class="platform-tag">TikTok</span>
+                                <span class="platform-tag">WeChat</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="risk-factors card">
+                    <div class="card__body">
+                        <h3>リスクファクター</h3>
+                        <ul class="risk-list">
+                            <li>テロ組織・過激派組織への支持</li>
+                            <li>反米的発言</li>
+                            <li>暴力・違法行為の助長</li>
+                            <li>政治的デモ活動への参加</li>
+                            <li>申請内容との矛盾</li>
+                            <li>問題投稿への「いいね」や再投稿</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Popular Majors -->
+        <section class="majors-section py-16">
+            <h2 class="section-title">人気専攻分野（Top 5）</h2>
+            <div class="chart-container">
+                <div class="card">
+                    <div class="card__body">
+                        <canvas id="majorsChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- State Distribution -->
+        <section class="states-section py-16">
+            <h2 class="section-title">州別留学生分布（Top 5）</h2>
+            <div class="chart-container">
+                <div class="card">
+                    <div class="card__body">
+                        <canvas id="statesChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Important Notes -->
+        <section class="notes-section py-16">
+            <h2 class="section-title">重要な注意事項</h2>
+            <div class="notes-grid">
+                <div class="note-card card">
+                    <div class="card__body">
+                        <h4>ビザ申請時の注意点</h4>
+                        <ul>
+                            <li>すべてのSNSアカウント情報を正確に申告</li>
+                            <li>過去5年間の投稿内容を事前に確認</li>
+                            <li>問題となる可能性のある投稿は削除を検討</li>
+                            <li>申請書類との一貫性を保つ</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="note-card card">
+                    <div class="card__body">
+                        <h4>SNS使用に関する推奨事項</h4>
+                        <ul>
+                            <li>政治的な投稿や発言は控える</li>
+                            <li>プライバシー設定を適切に管理</li>
+                            <li>第三者の問題投稿への反応を避ける</li>
+                            <li>プロフェッショナルな内容を心がける</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="note-card card">
+                    <div class="card__body">
+                        <h4>最新情報の入手方法</h4>
+                        <ul>
+                            <li>米国国務省の公式ウェブサイト</li>
+                            <li>在日米国領事館の情報</li>
+                            <li>大学の国際学生オフィス</li>
+                            <li>移民弁護士への相談</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
     </div>
-    
-    <script src="game.js"></script>
+
+    <script src="app.js"></script>
 </body>
 </html>
-
-
-
-
